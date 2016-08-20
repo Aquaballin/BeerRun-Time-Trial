@@ -36,6 +36,7 @@ var timer_value = 0.0;
 var timer_text;
 
 function create() {
+    
 //TRYING A DIF TIMER
 
 
@@ -84,6 +85,10 @@ function create() {
 }
 
 function update() {
+
+
+
+
     game.physics.arcade.collide(donuts, platforms);
     game.physics.arcade.collide(donut_lad, platforms);
     game.physics.arcade.overlap(donut_lad, donuts, collectDonuts, null, this);
@@ -121,11 +126,18 @@ function updateCounter() {
 }
 
 function collectDonuts (donut_lad, donut) {
+
     donut.kill();
+    if (donut_count == 11) {
+        alert(timer_value + " seconds ");
+        window.location.reload();
+    }
     donut_count += 1;
     donut_count_Text.text = 'Donuts: ' + donut_count;
 
 }
+
+
 
 </script>
 
