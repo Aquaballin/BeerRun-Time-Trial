@@ -19,6 +19,7 @@
     ****************6TESTING OUT FIREBASE TO KEEP SCORES**********
 
 */
+/*
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/");
 var usersAndScoreReferenceDB = ref.child("users");
 usersAndScoreReferenceDB.set({
@@ -27,7 +28,7 @@ usersAndScoreReferenceDB.set({
         name : "David Casey3"
     }
 });
-
+*/
 
 var game = new Phaser.Game(1200, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
@@ -134,13 +135,19 @@ function collectDonuts (donut_lad, donut) {
 
     donut.kill();
     if (donut_count == 11) {
+        //var person = prompt("Please enter your name", "First Last");
+        /*
         alert(timer_value + " seconds ");
         window.location.reload();
+        */ 
     }
+
     donut_count += 1;
     donut_count_Text.text = 'Donuts: ' + donut_count;
 
 }
+
+
 
 
 
