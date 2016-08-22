@@ -13,24 +13,11 @@
 <body>
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script type="text/javascript">
-
-/*
-
-    ****************6TESTING OUT FIREBASE TO KEEP SCORES**********
-
-*/
-/*
+//database stuff
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/");
-var usersAndScoreReferenceDB = ref.child("users");
-usersAndScoreReferenceDB.set({
-    userAndScore: {
-        score : 13,
-        name : "David Casey3"
-    }
-});
-*/
+var usersRef = dataBase.child("scores");
 
-var game = new Phaser.Game(1200, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
 
@@ -57,7 +44,6 @@ function create() {
     timer = game.time.create(false);
     timer.loop(1000, updateCounter, this);
     timer.start();
-
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.add.sprite(0, 0, 'background');
     platforms = game.add.group();
@@ -92,9 +78,6 @@ function create() {
 
 function update() {
 
-
-
-
     game.physics.arcade.collide(donuts, platforms);
     game.physics.arcade.collide(donut_lad, platforms);
     game.physics.arcade.overlap(donut_lad, donuts, collectDonuts, null, this);
@@ -121,9 +104,6 @@ function update() {
     {
         donut_lad.body.velocity.y = -350;
     }
-   
-
-
 }
 
 function updateCounter() {
@@ -135,23 +115,32 @@ function collectDonuts (donut_lad, donut) {
 
     donut.kill();
     if (donut_count == 11) {
-        //var person = prompt("Please enter your name", "First Last");
-        /*
-        alert(timer_value + " seconds ");
-        window.location.reload();
-        */ 
-    }
+        var person = prompt(timer_value + " Seconds!   " + "Please enter your name");
+        usersRef.push({
+            seconds : timer_value,
+            name : person
+        });     
 
+        var dataBaseRef = new Firebase("https://glaring-heat-3511.firebaseio.com/scores");
+
+        /*
+        dataBaseRef.once('value').then(function(snap){
+            var scores = scores.val();
+            console.log('scores',scores);
+
+        }*/
+        
+        usersRef.orderByChild('seconds').on('child_added', function(snapshot) {
+            snapshot.forEach(function(data) {
+                console.log(data.key() + " seconds " + data.val());
+            });
+        });
+        //window.location.reload();      
+    }
     donut_count += 1;
     donut_count_Text.text = 'Donuts: ' + donut_count;
-
 }
 
-
-
-
-
 </script>
-
 </body>
 </html>
