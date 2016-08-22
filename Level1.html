@@ -11,10 +11,25 @@
     </style>
 </head>
 <body>
-
+<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+/*
+
+    ****************6TESTING OUT FIREBASE TO KEEP SCORES**********
+
+*/
+var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/");
+var usersAndScoreReferenceDB = ref.child("users");
+usersAndScoreReferenceDB.set({
+    userAndScore: {
+        score : 13,
+        name : "David Casey3"
+    }
+});
+
+
+var game = new Phaser.Game(1200, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
 
@@ -38,19 +53,9 @@ var timer_text;
 function create() {
     
 //TRYING A DIF TIMER
-
-
-
-
     timer = game.time.create(false);
     timer.loop(1000, updateCounter, this);
     timer.start();
-
-
-
-
-
-
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.add.sprite(0, 0, 'background');
