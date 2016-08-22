@@ -37,6 +37,10 @@ var donut_count_Text;
 var timer;
 var timer_value = 0.0;
 var timer_text;
+var listOfScoresAndNames = [];
+
+var numOfChildrenInDB;
+
 
 function create() {
     
@@ -129,12 +133,26 @@ function collectDonuts (donut_lad, donut) {
             console.log('scores',scores);
 
         }*/
-        
+        /*
         usersRef.orderByChild('seconds').on('child_added', function(snapshot) {
             snapshot.forEach(function(data) {
                 console.log(data.key() + " seconds " + data.val());
             });
         });
+        */
+         
+    dataBaseRef.orderByChild("seconds").on("child_added", function(snapshot) {
+        //var numOfChildrenInDB = snapshot.numChildren();
+        var data = snapshot.val();
+        //listOfScoresAndNames.push()
+        console.log(data.seconds);
+        console.log(data.name);  
+    });
+
+    
+
+
+
         //window.location.reload();      
     }
     donut_count += 1;
