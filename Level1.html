@@ -127,24 +127,27 @@ function collectDonuts (donut_lad, donut) {
 
         var dataBaseRef = new Firebase("https://glaring-heat-3511.firebaseio.com/scores");
 
-        /*
-        dataBaseRef.once('value').then(function(snap){
-            var scores = scores.val();
-            console.log('scores',scores);
+      
+    /*
+    -----------YOU NEED TO USE FOR EACH TO LOAD DATA INTO LIST/ARRAY----------------
 
-        }*/
-        /*
-        usersRef.orderByChild('seconds').on('child_added', function(snapshot) {
-            snapshot.forEach(function(data) {
-                console.log(data.key() + " seconds " + data.val());
-            });
-        });
-        */
+    var ref = new Firebase("https://docs-examples.firebaseio.com/samplechat/users");
+    ref.once("value", function(snapshot) {
+      // The callback function will get called twice, once for "fred" and once for "barney"
+      snapshot.forEach(function(childSnapshot) {
+        // key will be "fred" the first time and "barney" the second time
+        var key = childSnapshot.key();
+        // childData will be the actual contents of the child
+        var childData = childSnapshot.val();
+      });
+    });
+
+    */
          
     dataBaseRef.orderByChild("seconds").on("child_added", function(snapshot) {
-        //var numOfChildrenInDB = snapshot.numChildren();
+        //probably dont need this //var numOfChildrenInDB = snapshot.numChildren();
         var data = snapshot.val();
-        //listOfScoresAndNames.push()
+        listOfScoresAndNames.push(snapshot.val());
         console.log(data.seconds);
         console.log(data.name);  
     });
@@ -155,6 +158,11 @@ function collectDonuts (donut_lad, donut) {
 
         //window.location.reload();      
     }
+    for (i = 0; i < listOfScoresAndNames.length; i++) {
+    console.log("TESTING HERE");
+    console.log(listOfScoresAndNames[i].seconds);
+    console.log(listOfScoresAndNames[i].name);
+}
     donut_count += 1;
     donut_count_Text.text = 'Donuts: ' + donut_count;
 }
