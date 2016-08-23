@@ -73,7 +73,7 @@ function create() {
       
         var donut = donuts.create(i * 70, 0, 'donut');  
         donut.body.gravity.y = 300;    
-        donut.body.bounce.y = 0.7 + Math.random() * 0.2;
+       donut.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
     donut_count_Text = game.add.text(650, 16, 'Donuts: 0', { fontSize: '32px', fill: '#000' });
     timer_text = game.add.text(16,16,'Time: ', {fontSize: '32px', fill: '#000'});
