@@ -15,17 +15,19 @@
 <script type="text/javascript">
 //database stuff
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/scores");
-dataBaseRef.orderByChild("seconds").on("child_added", function(snapshot) {
+dataBase.orderByChild("seconds").on("child_added", function(snapshot) {
         //probably dont need this //var numOfChildrenInDB = snapshot.numChildren();
         var data = snapshot.val();
-        listOfScoresAndNames.push(snapshot.val());
+        //listOfScoresAndNames.push(snapshot.val());
         document.write(data.seconds + '\n');
-        document.write(data.name + '\n');
+        document.write(data.name + "<br>");
         document.write('\n');  
-    });
+});
+
 
 
   //window.location.reload();
+
 
 </script>
 </body>
