@@ -110,6 +110,10 @@ function updateCounter() {
     timer_text.text = 'Time: ' + (timer_value);
 }
 
+function goToScoreScreenPage(){
+      window.location.href = "https://aquaballin.github.io/letsMakeGames/ScorePage";
+}
+
 function collectDonuts (donut_lad, donut) {
 
     donut.kill();
@@ -120,6 +124,7 @@ function collectDonuts (donut_lad, donut) {
             name : person
         });     
         var dataBaseRef = new Firebase("https://glaring-heat-3511.firebaseio.com/scores");
+        goToScoreScreenPage();
     
     /*
     -----------YOU NEED TO USE FOR EACH TO LOAD DATA INTO LIST/ARRAY----------------
