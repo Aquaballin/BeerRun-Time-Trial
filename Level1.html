@@ -151,17 +151,13 @@ function collectDonuts (donut_lad, donut) {
         console.log(data.seconds);
         console.log(data.name);  
     });
-
-    
-
-
-
-    window.location.reload();      
+     
     }
     for (i = 0; i < listOfScoresAndNames.length; i++) {
     console.log("TESTING HERE");
     console.log(listOfScoresAndNames[i].seconds);
     console.log(listOfScoresAndNames[i].name);
+    window.location.reload(); 
 }
     donut_count += 1;
     donut_count_Text.text = 'Donuts: ' + donut_count;
