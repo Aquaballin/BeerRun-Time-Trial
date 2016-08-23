@@ -32,6 +32,11 @@
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script type="text/javascript">
 
+
+new Audio('Song.mp3').play()
+
+
+
 //database stuff
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/scores");
 dataBase.orderByChild("seconds").on("child_added", function(snapshot) {
