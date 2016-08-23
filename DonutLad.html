@@ -121,7 +121,10 @@ function collectDonuts (donut_lad, donut) {
 
     donut.kill();
     if (donut_count == 11) {
-        var person = prompt(timer_value + " Seconds!   " + "Please enter your name");
+        var person = "";//= prompt(timer_value + " Seconds!   " + "Please enter your name");
+        while (person.length < 3) {
+            person = prompt(timer_value + " Seconds!   " + "Please enter your name");
+        }
         usersRef.push({
             seconds : timer_value,
             name : person

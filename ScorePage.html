@@ -34,7 +34,7 @@ dataBase.orderByChild("seconds").on("child_added", function(snapshot) {
         var data = snapshot.val();  
         var person = {
             name: data.name,
-            seconds: data.seconds
+            seconds: data.seconds + " seconds"
         };
         var options = {
             valueNames: [ 'name', 'seconds' ],
