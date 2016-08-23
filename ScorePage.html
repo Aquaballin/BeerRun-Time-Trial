@@ -11,6 +11,20 @@
     </style>
 </head>
 <body>
+
+
+
+    <div id="users">
+        <input class="search" placeholder="Search" />
+        <button class="sort" data-sort="name">Sort</button>
+        <ul class="list"></ul>
+
+    </div>
+
+
+
+
+<script src="List.js"></script>
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script type="text/javascript">
 //database stuff
@@ -19,15 +33,54 @@ dataBase.orderByChild("seconds").on("child_added", function(snapshot) {
         //probably dont need this //var numOfChildrenInDB = snapshot.numChildren();
         var data = snapshot.val();
         //listOfScoresAndNames.push(snapshot.val());
+        var person = {
+            name: data.name,
+            seconds: data.seconds
+        };
+
+
+
+        var options = {
+            valueNames: [ 'name', 'seconds' ],
+            item: '<li><h3 class="name"></h3><p class="seconds"></p></li>'
+        };
+        var values = [];
+        values.push(person);
+
+
+        /*= [
+            {
+                name: 'Jonny Strömberg',
+                seconds: 1986
+            },
+            {
+                name: 'Jonas Arnklint',
+                seconds: 1985
+            },
+            {
+                name: 'Martina Elm',
+                seconds: 1986
+            }
+        ];
+        */
+        var userList = new List('users', options, values);
+
+       
+
+
+        /*
         document.write(data.seconds + '\n');
         document.write(data.name + "<br>");
         document.write('\n');  
+        */
+
+
+
+
 });
 
 
-
   //window.location.reload();
-
 
 </script>
 </body>
