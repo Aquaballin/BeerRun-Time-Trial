@@ -16,16 +16,13 @@
 //database stuff
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/");
 var usersRef = dataBase.child("scores");
-
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
-
     game.load.image('background', 'assets/background.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('donut', 'assets/donut.png');
     game.load.spritesheet('dude', 'assets/dude_backup_file.png', 32, 48);
-
 }
 
 var donut_lad;
@@ -38,9 +35,7 @@ var timer;
 var timer_value = 0.0;
 var timer_text;
 var listOfScoresAndNames = [];
-
 var numOfChildrenInDB;
-
 
 function create() {
     
@@ -124,10 +119,8 @@ function collectDonuts (donut_lad, donut) {
             seconds : timer_value,
             name : person
         });     
-
         var dataBaseRef = new Firebase("https://glaring-heat-3511.firebaseio.com/scores");
-
-      
+    
     /*
     -----------YOU NEED TO USE FOR EACH TO LOAD DATA INTO LIST/ARRAY----------------
 
@@ -143,14 +136,25 @@ function collectDonuts (donut_lad, donut) {
     });
 
     */
-         
+
+
+
+
+
+
+
+
+
+
+       /*
     dataBaseRef.orderByChild("seconds").on("child_added", function(snapshot) {
         //probably dont need this //var numOfChildrenInDB = snapshot.numChildren();
         var data = snapshot.val();
-        listOfScoresAndNames.push(snapshot.val());
+        //listOfScoresAndNames.push(snapshot.val());
         console.log(data.seconds);
         console.log(data.name);  
     });
+
      
     }
     for (i = 0; i < listOfScoresAndNames.length; i++) {
@@ -159,10 +163,18 @@ function collectDonuts (donut_lad, donut) {
     console.log(listOfScoresAndNames[i].name);
     window.location.reload(); 
 }
+*/
+    
+
+    
+}
     donut_count += 1;
     donut_count_Text.text = 'Donuts: ' + donut_count;
-}
 
+    function goToScoreScreenPage(){
+      window.location.href = "https://aquaballin.github.io/letsMakeGames/ScorePage";
+    }
+}
 </script>
 </body>
 </html>
