@@ -1,6 +1,7 @@
 <!doctype html> 
 <html lang="en"> 
 <head> 
+    <link rel="stylesheet" type="text/css" href="style.css">
 	<meta charset="UTF-8" />
     <title>Donut Lad</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
@@ -11,8 +12,11 @@
     </style>
 </head>
 <body>
-
-
+    <br>
+    <div>Leaderboard</div>
+    <br>
+    <br>
+    <br>
 
     <div id="users">
         <input class="search" placeholder="Search" />
@@ -27,6 +31,7 @@
 <script src="List.js"></script>
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script type="text/javascript">
+
 //database stuff
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/scores");
 dataBase.orderByChild("seconds").on("child_added", function(snapshot) {
