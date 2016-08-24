@@ -14,24 +14,26 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script type="text/javascript">
-new Audio('Song.mp3').play();
+//new Audio('Song.mp3').play();
 
 
 
 //database stuff
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/");
 var usersRef = dataBase.child("scores");
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(1000, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
     game.load.image('background', 'assets/background.png');
     game.load.image('ground', 'assets/platform.png');
+    game.load.image('platform2', 'assets/platform2.png');
     game.load.image('donut', 'assets/donut.png');
     game.load.spritesheet('dude', 'assets/dude_backup_file.png', 32, 48);
 }
 
 var donut_lad;
 var platforms;
+
 var cursors;
 var donuts;
 var donut_count = 0;
@@ -52,13 +54,29 @@ function create() {
     game.add.sprite(0, 0, 'background');
     platforms = game.add.group();
     platforms.enableBody = true;
+
+
+
+
+
     var ground = platforms.create(0, game.world.height - 64, 'ground');
-    ground.scale.setTo(2, 2);
+    ground.scale.setTo(4, 2);
     ground.body.immovable = true;
     var ledge = platforms.create(0, 400, 'ground');
     ledge.body.immovable = true;
-    ledge = platforms.create(250, 200, 'ground');
+    ledge = platforms.create(250, 200, 'platform2');
     ledge.body.immovable = true;  
+
+    ledge = platforms.create(850, 150, 'platform2');
+    ledge.body.immovable = true; 
+    ledge = platforms.create(500, 300, 'platform2');
+    ledge.body.immovable = true; 
+
+
+
+
+
+
     donut_lad = game.add.sprite(32, game.world.height - 150, 'dude');
     game.physics.arcade.enable(donut_lad);  
     donut_lad.body.bounce.y = 0.2;
@@ -68,14 +86,14 @@ function create() {
     donut_lad.animations.add('right', [5, 6, 7, 8], 10, true); 
     donuts = game.add.group();   
     donuts.enableBody = true; 
-    for (var i = 0; i < 12; i++)
+    for (var i = 0; i < 14; i++)
     {
       
         var donut = donuts.create(i * 70, 0, 'donut');  
         donut.body.gravity.y = 300;    
        donut.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
-    donut_count_Text = game.add.text(650, 16, 'Donuts: 0', { fontSize: '32px', fill: '#000' });
+    donut_count_Text = game.add.text(850, 16, 'Donuts: 0', { fontSize: '32px', fill: '#000' });
     timer_text = game.add.text(16,16,'Time: ', {fontSize: '32px', fill: '#000'});
     cursors = game.input.keyboard.createCursorKeys();   
 }
@@ -120,7 +138,7 @@ function updateCounter() {
 function collectDonuts (donut_lad, donut) {
 
     donut.kill();
-    if (donut_count == 11) {
+    if (donut_count == 13) {
         var person = "";//= prompt(timer_value + " Seconds!   " + "Please enter your name");
         while (person.length < 3) {
             person = prompt(timer_value + " Seconds!   " + "Please enter your name");
