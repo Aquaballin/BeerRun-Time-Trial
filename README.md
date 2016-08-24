@@ -1,4 +1,4 @@
-# letsMakeGames
+# Beer Run
 
 This is a web game using Phaser.js physics engine
 and Firebase BaaS.
