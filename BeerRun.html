@@ -27,7 +27,7 @@ function preload() {
     game.load.image('background', 'assets/background.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('platform2', 'assets/platform2.png');
-    game.load.image('donut', 'assets/donut.png');
+    game.load.image('donut', 'assets/beer2.png');
     game.load.spritesheet('dude', 'assets/dude_backup_file.png', 32, 48);
 }
 
@@ -86,14 +86,14 @@ function create() {
     donut_lad.animations.add('right', [5, 6, 7, 8], 10, true); 
     donuts = game.add.group();   
     donuts.enableBody = true; 
-    for (var i = 0; i < 14; i++)
+    for (var i = 0; i < 15; i++)
     {
       
         var donut = donuts.create(i * 70, 0, 'donut');  
         donut.body.gravity.y = 300;    
        donut.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
-    donut_count_Text = game.add.text(850, 16, 'Donuts: 0', { fontSize: '32px', fill: '#000' });
+    donut_count_Text = game.add.text(850, 16, 'Beer: 0', { fontSize: '32px', fill: '#000' });
     timer_text = game.add.text(16,16,'Time: ', {fontSize: '32px', fill: '#000'});
     cursors = game.input.keyboard.createCursorKeys();   
 }
@@ -138,7 +138,7 @@ function updateCounter() {
 function collectDonuts (donut_lad, donut) {
 
     donut.kill();
-    if (donut_count == 13) {
+    if (donut_count == 14) {
         var person = "";//= prompt(timer_value + " Seconds!   " + "Please enter your name");
         while (person.length < 3) {
             person = prompt(timer_value + " Seconds!   " + "Please enter your name");
@@ -152,7 +152,7 @@ function collectDonuts (donut_lad, donut) {
     
 }
     donut_count += 1;
-    donut_count_Text.text = 'Donuts: ' + donut_count;
+    donut_count_Text.text = 'Beers: ' + donut_count;
 
     function goToScoreScreenPage(){
       window.location.href = "ScorePage.html";
