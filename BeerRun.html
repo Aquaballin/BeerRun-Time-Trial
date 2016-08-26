@@ -20,39 +20,11 @@
     Add BAC meter than gets the player drunk as it goes
     add physics that make player drunk
     add WASD feature
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 */
-
-
-
 //database stuff
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/");
 var usersRef = dataBase.child("scores");
@@ -80,20 +52,13 @@ var listOfScoresAndNames = [];
 var numOfChildrenInDB;
 
 function create() {
-    
-
     timer = game.time.create(false);
-    timer.loop(1000, updateCounter, this);
+    timer.loop(100, updateCounter, this);
     timer.start();
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.add.sprite(0, 0, 'background');
     platforms = game.add.group();
     platforms.enableBody = true;
-
-
-
-
-
     var ground = platforms.create(0, game.world.height - 64, 'ground');
     ground.scale.setTo(4, 2);
     ground.body.immovable = true;
@@ -101,17 +66,10 @@ function create() {
     ledge.body.immovable = true;
     ledge = platforms.create(250, 200, 'platform2');
     ledge.body.immovable = true;  
-
     ledge = platforms.create(850, 150, 'platform2');
     ledge.body.immovable = true; 
     ledge = platforms.create(500, 300, 'platform2');
     ledge.body.immovable = true; 
-
-
-
-
-
-
     donut_lad = game.add.sprite(32, game.world.height - 150, 'dude');
     game.physics.arcade.enable(donut_lad);  
     donut_lad.body.bounce.y = 0.2;
@@ -129,17 +87,21 @@ function create() {
        donut.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
     donut_count_Text = game.add.text(850, 16, 'Beer: 0', { fontSize: '32px', fill: '#000' });
-    timer_text = game.add.text(16,16,'Time: ', {fontSize: '32px', fill: '#000'});
     cursors = game.input.keyboard.createCursorKeys();   
+    timer_text = game.add.text(16,16,'Time: ', {fontSize: '32px', fill: '#000'});
+    var startTime = Date.now();
+    var interval = setInterval(function() {
+        var elapsedTime = Date.now() - startTime;       
+        timer_text.text = 'Time: ' + (elapsedTime / 1000).toFixed(3);
+        timer_value = (elapsedTime / 1000).toFixed(3);
+    }, 100);
 }
 
 function update() {
-
     game.physics.arcade.collide(donuts, platforms);
     game.physics.arcade.collide(donut_lad, platforms);
     game.physics.arcade.overlap(donut_lad, donuts, collectDonuts, null, this);
     donut_lad.body.velocity.x = 0;
-
     if (cursors.left.isDown)
     {
         donut_lad.body.velocity.x = -150;
@@ -153,7 +115,6 @@ function update() {
     }
     else
     {
-
         donut_lad.animations.stop();
         donut_lad.frame = 4;
     }
@@ -164,12 +125,9 @@ function update() {
 }
 
 function updateCounter() {
-    timer_value++;
-    timer_text.text = 'Time: ' + (timer_value);
+    //timer_value++;
+    //timer_text.text = 'Time: ' + (timer_value);
 }
-
-
-
 function collectDonuts (donut_lad, donut) {
 
     donut.kill();
@@ -184,7 +142,6 @@ function collectDonuts (donut_lad, donut) {
         });     
         var dataBaseRef = new Firebase("https://glaring-heat-3511.firebaseio.com/scores");
         goToScoreScreenPage();
-    
 }
     donut_count += 1;
     donut_count_Text.text = 'Beers: ' + donut_count;
