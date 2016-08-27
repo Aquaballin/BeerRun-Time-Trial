@@ -16,14 +16,9 @@
 <script type="text/javascript">
 //new Audio('Song.mp3').play();
 /*
-
     Add BAC meter than gets the player drunk as it goes
     add physics that make player drunk
     add WASD feature
-
-
-
-
 */
 //database stuff
 var dataBase = new Firebase("https://glaring-heat-3511.firebaseio.com/");
@@ -52,9 +47,7 @@ var listOfScoresAndNames = [];
 var numOfChildrenInDB;
 
 function create() {
-    timer = game.time.create(false);
-    timer.loop(100, updateCounter, this);
-    timer.start();
+    
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.add.sprite(0, 0, 'background');
     platforms = game.add.group();
